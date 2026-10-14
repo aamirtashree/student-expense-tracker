@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketPal | Student Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">✦</span> PocketPal</a>
+    <span class="tagline">Your money, made simple.</span>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">STUDENT FINANCE DASHBOARD</p>
+        <h1>Know where your money <span>goes.</span></h1>
+        <p class="subtitle">A little tracking today. A lot more control tomorrow.</p>
+      </div>
+      <div class="date-pill" id="todayLabel">Today</div>
+    </section>
+
+    <section class="budget-panel">
+      <div>
+        <p class="muted">Monthly spending budget (₹)</p>
+        <div class="budget-edit">
+          <span class="rupee">₹</span>
+          <input id="budgetInput" type="number" min="0" step="100" value="5000" aria-label="Monthly budget">
+          <button id="saveBudgetBtn" class="small-button" type="button">Save budget</button>
+        </div>
+      </div>
+      <div class="budget-progress">
+        <div class="progress-label"><span>Budget used</span><strong id="budgetPercent">0%</strong></div>
+        <div class="progress-track"><div id="budgetBar" class="progress-fill"></div></div>
+        <p class="muted" id="budgetHint">You’re off to a fresh start!</p>
+      </div>
+    </section>
+
+    <section class="summary-grid" aria-label="Expense summary">
+      <article class="summary-card balance-card">
+        <div class="card-top"><span>Spent this month</span><span class="icon-chip">↗</span></div>
+        <p class="amount" id="totalSpent">₹0.00</p>
+        <p class="card-note">Your tracked expenses</p>
+      </article>
+      <article class="summary-card">
+        <div class="card-top"><span>Budget remaining</span><span class="icon-chip green">✓</span></div>
+        <p class="amount" id="remaining">₹5,000.00</p>
+        <p class="card-note">Based on your monthly budget</p>
+      </article>
+      <article class="summary-card">
+        <div class="card-top"><span>Transactions</span><span class="icon-chip purple">≡</span></div>
+        <p class="amount" id="transactionCount">0</p>
+        <p class="card-note">Expenses recorded this month</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel form-panel">
+        <div class="section-heading">
+          <div><p class="eyebrow">ADD A RECORD</p><h2>New expense</h2></div>
+          <span class="heading-icon">＋</span>
+        </div>
+        <form id="expenseForm">
+          <label for="description">What did you spend on?</label>
+          <input id="description" name="description" type="text" placeholder="e.g. College lunch" maxlength="70" required>
+
+          <div class="two-column">
+            <div>
+              <label for="amount">Amount (₹)</label>
+              <input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="150" required>
+            </div>
+            <div>
+              <label for="category">Category</label>
+              <select id="category" name="category" required>
+                <option value="Food">🍜 Food</option>
+                <option value="Travel">🚌 Travel</option>
+                <option value="Education">📚 Education</option>
+                <option value="Shopping">🛍️ Shopping</option>
+                <option value="Bills">🧾 Bills</option>
+                <option value="Other">✨ Other</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="expenseDate">Date</label>
+          <input id="expenseDate" name="expenseDate" type="date" required>
+          <button class="primary-button" type="submit">＋ Add expense</button>
+          <p class="form-message" id="formMessage" role="status"></p>
+        </form>
+      </article>
+
+      <article class="panel transactions-panel">
+        <div class="section-heading transaction-heading">
+          <div><p class="eyebrow">YOUR ACTIVITY</p><h2>Recent expenses</h2></div>
+          <select id="filterCategory" aria-label="Filter by category">
+            <option value="All">All categories</option>
+            <option value="Food">Food</option>
+            <option value="Travel">Travel</option>
+            <option value="Education">Education</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div id="expenseList" class="expense-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">✧</div>
+          <h3>No expenses yet</h3>
+          <p>Add your first expense to see it here.</p>
+        </div>
+        <div class="list-footer"><span id="listCount">0 records</span><button id="clearAllBtn" class="text-button" type="button">Clear all</button></div>
+      </article>
+    </section>
+    <footer>Made for students, one rupee at a time. <span>Data stays in this browser.</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
